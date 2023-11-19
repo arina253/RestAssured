@@ -13,7 +13,9 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class day1 {
+public class day1ReqresAPI {
+	
+	//RestAssured is a Java library for testing restful API.
 
 	@Test
 	public void getUsers() {
@@ -26,10 +28,13 @@ public class day1 {
 		response.then().statusCode(200);
 
 		// Second assertion
-		response.then().assertThat().body("data.id", equalTo(2)).body("data.email", equalTo("janet.weaver@reqres.in"))
-				.body("data.first_name", equalTo("Janet")).body("data.last_name", equalTo("Weaver"))
+		response.then().assertThat()
+		        .body("data.id", equalTo(2))
+		        .body("data.email", equalTo("janet.weaver@reqres.in"))
+				.body("data.first_name", equalTo("Janet"))
+				.body("data.last_name", equalTo("Weaver"))
 				.body("data.avatar", equalTo("https://reqres.in/img/faces/2-image.jpg"));
-
+                response.then().log().all();
 	}
 
 	@Test
@@ -83,3 +88,6 @@ public class day1 {
 	}
 
 }
+
+//response.then().log().all()----for logging all details of the HTTP response
+//including headers, cookies, status code, and the response body.
